@@ -5,13 +5,13 @@ import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import { DeleteOutlined } from '@material-ui/icons'
 
-function NoteCard({ note, deleteNOte }) {
+function NoteCard({ note, deleteNote }) {
 	return (
-		<Grid key={note.id} item xs={12} md={3} sm={6}>
+		<Grid key={note._id} item xs={12} md={3} sm={6}>
 			<Card elevation={1}>
 				<CardHeader
 					action={
-						<IconButton onClick={()=>deleteNOte(note.id)}>
+						<IconButton onClick={()=>deleteNote(note._id)}>
 							<DeleteOutlined />
 						</IconButton>
 					}

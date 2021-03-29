@@ -1,28 +1,48 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Typography, Container } from '@material-ui/core'
+import { Grid, makeStyles, Container } from '@material-ui/core'
 import NoteCard from '../components/NoteCard'
 import NoData from '../components/NoData'
+const useStyle = makeStyles({
+  grid: {marginTop:5}
+    
+})
 export default function Notes() {
+  const classes = useStyle()
 	const [ notes, setNotes ] = useState(null)
+	const [ deleted, setDeleted ] = useState(null)
 	useEffect(() => {
-		fetch('http://localhost:3333/notes')
+    setDeleted(false)
+		fetch('http://localhost:3334/notes')
 			.then((response) => response.json())
 			.then((notes) => {
+        // console.log(notes);
 				setNotes(notes)
 			})
 			.catch((err) => console.log(err))
-	}, [])
-  const deleteNOte = async id => {
-    await fetch(`http://localhost:3333/notes/${id}`,{method:'DELETE'})
-    const newNotes = notes.filter(note => note.id !== id)
-    setNotes(newNotes)
+	}, [deleted])
+  const deleteNote = async (id) => {
+    console.log("note ===>>> ", notes);
+    try {
+      fetch(`http://localhost:3334/notes/${id}`,  { method:'DELETE', headers: {'Content-Type': 'application/json' },body : JSON.stringify({id})})
+      .then(()=>{
+        setDeleted(true)
+      })
+      // const newNotes = notes.filter(note => note._id !== id)
+      // console.log("newNotes ===>>> ", newNotes);
+      
+    } catch (error) {
+    console.log(error);
+    }
   }
+  
 	return (
-		<Container>
-			<Grid container spacing={2}>
-        {notes ? notes.map((note) => 
-                  <NoteCard  deleteNOte={deleteNOte}key={note.id} note={note} />) 
-                : <NoData />}
+		<Container className={classes.grid}>
+			<Grid container spacing={1}>
+        {
+          notes ? notes.map((note) => 
+                  <NoteCard  deleteNote={deleteNote} key={note._id} note={note} />) 
+                : <NoData />
+        }
       </Grid>
 		</Container>
 	)

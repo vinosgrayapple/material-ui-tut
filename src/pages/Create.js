@@ -51,7 +51,7 @@ export default function Create() {
 			setDetailErr(true)
 		}
 		fetch(
-      'http://localhost:3333/notes',
+      'http://localhost:3334/notes',
       {
         method:'POST',
         headers: {
@@ -59,9 +59,7 @@ export default function Create() {
        body: JSON.stringify({ title, detail, category })
       })
       .then(()=>history.push('/'))
-      // .then(response => response.json())
-      // .then(re => console.log(re))
-    
+      
 	}
 	return (
 		<Container>
