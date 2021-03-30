@@ -14,8 +14,7 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily:
-      'Quicksand, Roboto',
+    fontFamily:'Quicksand',
     fontWeightLight: 400,
     fontWeightRegular: 500,
     fontWeightMedium: 600,
