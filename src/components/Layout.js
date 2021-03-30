@@ -1,6 +1,6 @@
-import { List,ListItem,ListItemIcon, ListItemText,makeStyles, Typography } from '@material-ui/core'
+import { List, ListItem, ListItemIcon, ListItemText, makeStyles, Typography, Drawer } from '@material-ui/core'
 import React from 'react'
-import {Drawer} from '@material-ui/core'
+
 import { AddCircleOutlineOutlined, SubjectOutlined } from '@material-ui/icons'
 import { useHistory, useLocation } from 'react-router'
 const drawerWidth = 240
@@ -15,52 +15,52 @@ const useStyles = makeStyles({
   },
   drawerPaper: {
     width: drawerWidth
-    
+
   },
   root: {
     display: 'flex'
   },
   active: {
     background: '#f4f4f4'
-  },
+  }
 })
-function Layout({children}) {
+function Layout ({ children }) {
   const classes = useStyles()
   const history = useHistory()
   const location = useLocation()
   const menuItems = [
-    { 
-      text: 'My Notes', 
-      icon: <SubjectOutlined color="secondary"/> ,
-      path: '/' 
+    {
+      text: 'My Notes',
+      icon: <SubjectOutlined color='secondary' />,
+      path: '/'
     },
-    { 
-      text: 'Create Note', 
-      icon: <AddCircleOutlineOutlined color="secondary" />, 
-      path: '/create' 
-    },
-  ];
+    {
+      text: 'Create Note',
+      icon: <AddCircleOutlineOutlined color='secondary' />,
+      path: '/create'
+    }
+  ]
   return (
-  <div className={classes.root}>
-  {/* app bar  */}
+    <div className={classes.root}>
+      {/* app bar  */}
 
-  {/* side driwer */}
-    <Drawer
-    className={classes.drawer}
-    variant="permanent"
-    anchor="left"
-    classes={{paper: classes.drawerPaper}}
-    >
-      <div>
-        <Typography variant="h5">
-          Vinos
-        </Typography>
-      </div>
-      <List>
+      {/* side driwer */}
+      <Drawer
+        className={classes.drawer}
+        variant='permanent'
+        anchor='left'
+        classes={{ paper: classes.drawerPaper }}
+      >
+        <div>
+          <Typography variant='h5'>
+            Vinos
+          </Typography>
+        </div>
+        <List>
           {menuItems.map((item) => (
-            <ListItem 
-              button 
-              key={item.text} 
+            <ListItem
+              button
+              key={item.text}
               onClick={() => history.push(item.path)}
               className={location.pathname == item.path ? classes.active : null}
             >
@@ -69,12 +69,12 @@ function Layout({children}) {
             </ListItem>
           ))}
         </List>
-        
-    </Drawer>
-    <div className={classes.page}>
-      {children}
+
+      </Drawer>
+      <div className={classes.page}>
+        {children}
+      </div>
     </div>
-  </div>
   )
 }
 
