@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Container } from '@material-ui/core'
 import Masonry from 'react-masonry-css'
 import NoteCard from '../components/NoteCard'
-// import NoData from '../components/NoData'
 
 export default function Notes() {
 	const [ notes, setNotes ] = useState([])
