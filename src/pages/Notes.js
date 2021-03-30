@@ -6,6 +6,7 @@ import NoteCard from '../components/NoteCard'
 
 export default function Notes() {
 	const [ notes, setNotes ] = useState([])
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(async () => {
 		try {
 			const responce = await fetch('http://localhost:3334/notes')

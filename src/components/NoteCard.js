@@ -1,10 +1,10 @@
 import React from 'react'
-import { Avatar, Grid, IconButton, makeStyles, Typography } from '@material-ui/core'
+import { Avatar,  IconButton, makeStyles, Typography } from '@material-ui/core'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import { DeleteOutlined } from '@material-ui/icons'
-import { blue, green, grey, pink, yellow } from '@material-ui/core/colors'
+import {  green, grey, pink, yellow } from '@material-ui/core/colors'
 
 const useStyles = makeStyles({
 	avatar: {
